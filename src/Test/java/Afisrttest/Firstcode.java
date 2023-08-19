@@ -17,31 +17,23 @@ public class Firstcode {
         driver.get("https://www.hepsiburada.com/");//sayfaya gitti
         System.out.println("site açıldı");
         driver.manage().window().maximize();
+
         Thread.sleep(5000);
+
         driver.findElement(By.xpath("//*[@class='searchBoxOld-M1esqHPyWSuRUjMCALPK']")).click();
         Thread.sleep(5000);
         driver.findElement(By.xpath("//div[@role=\"combobox\"]/*[@type='text']")).sendKeys("Erkek T-Shirt" + "\n" );
         System.out.println("yazdı");
+
+
         List<WebElement> elements = driver.findElements(By.cssSelector("#\\31  "));
         int numberOfElements = elements.size();
         Random rand = new Random();
         int randomIndex = rand.nextInt(numberOfElements);
-        driver.findElement(By.id("i"+numberOfElements)).click();
         Thread.sleep(5000);
 
-
-
-
-
+        driver.findElement(By.id("i"+randomIndex)).click();
 
 
     }
-
-
-
-
-
-
-
-
 }

@@ -2,31 +2,30 @@ package Driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 
-import java.net.URL;
-import java.sql.Driver;
+
 
 public class DriverMethods {
+    protected WebDriver driver;
 
-    static  WebDriver driver = new ChromeDriver();
-    @BeforeTest
-    public WebDriver getDriver(){
-        if (driver==null){
-            driver.get("https://www.hepsiburada.com/");
-        }
+    @BeforeMethod
+    public void  getDriver(){
+        driver = new ChromeDriver();
+        driver.get("https://www.hepsiburada.com/");
         driver.manage().window().maximize();
 
-        return driver;
+
     }
 
 
-    public static void closeDriver(){
-        if (driver != null){
-            driver.close();
-            driver = null;
-        }
-    }
 
+    @AfterMethod
+    public void closeDriver(){
+            driver.quit();
+    }
 }

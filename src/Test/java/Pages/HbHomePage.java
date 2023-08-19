@@ -1,27 +1,41 @@
 package Pages;
 
-import Driver.DriverMethods;
-import org.openqa.selenium.By;
+import Driver.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-import java.util.Random;
-public class HbHomePage {
+import java.time.Duration;
 
-    DriverMethods driver = new DriverMethods();
-
-
-    @FindBy(xpath ="//*[@class='searchBoxOld-M1esqHPyWSuRUjMCALPK']" )
-    public WebElement Searchbox ;
-
-    @FindBy(xpath ="//div[@role=\"combobox\"]/*[@type='text']" )
-    public WebElement Searchboxtextbox ;
+public class HbHomePage extends BasePage {
 
 
 
+    @FindBy(xpath ="//*[@class=\"searchBoxOld-M1esqHPyWSuRUjMCALPK\"]" )
+    public WebElement searchBox ;
 
+    @FindBy(xpath ="//*[@type=\"text\"]" )
+    public WebElement searchBoxAfterClick ;
+
+    @FindBy(xpath = "//*[@class=\"searchBoxOld-yDJzsIfi_S5gVgoapx6f\"]")
+    public WebElement aramaIcon;
+
+    String arama = "Erkek T-Shirt"+ "\n";
+
+    public HbHomePage(WebDriver driver) {
+        super(driver);
+    }
+
+
+
+    public void setSearchBoxAfterClick(String string) throws InterruptedException {
+        Thread.sleep(1000);
+        new Actions(super.driver)
+                .sendKeys(string)
+                .perform();
+        Thread.sleep(1000);
+    }
 
 
 }
